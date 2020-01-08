@@ -4,11 +4,16 @@ const express = require('express');
 
 const router = express.Router();
 
-/*router.get('/', (req, res) => {
-  res.render('login', { title: 'Registration form' });
+router.get('/', (req, res) => {
+    res.render('home');
 });
 
-router.post('/', 
+router.get('/admin', (req, res) => {
+    res.render('login', { title: 'Registration form' });
+});
+
+/*
+router.post('/admin', 
     [
         body('name')
             .isLength({ min: 1 })
@@ -31,9 +36,5 @@ router.post('/',
             });
         }
 });*/
-
-router.get('/', (req, res) => {
-    res.render('home');
-});
 
 module.exports = router;
