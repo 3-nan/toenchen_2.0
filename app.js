@@ -6,9 +6,18 @@ const routes = require('./routes/index');
 
 const app = express();
 
+// Database
+var monk = require('monk');
+var db = monk('localhost:27017/tunedb');
+
 app.engine('ejs', require('ejs').renderFile);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(function(req, res, next){
+    req.db = db;
+    next();
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', routes);
